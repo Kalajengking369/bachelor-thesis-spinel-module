@@ -19,10 +19,10 @@
 
 This project implements an industrial-grade embedded IoT measurement module based on an **NXP FRDM-MCX (32-bit ARM Cortex-M33)** microcontroller running the **FreeRTOS** real-time operating system. 
 
-The module periodically samples high-precision digital temperature sensors (**Texas Instruments TMP275**) over an **I²C** bus and communicates with a supervisory computer (Master PC) across an industrial **RS485** physical bus using the structured **Spinel protocol** (supporting both ASCII and Binary frame formats). A corresponding cross-platform supervisory control application was implemented in **C++17**.
+The module periodically samples high-precision digital temperature sensors (**Dallas DS1621**) over an **I²C** bus and communicates with a supervisory computer (Master PC) across an industrial **RS485** physical bus using the structured **Spinel protocol** (supporting both ASCII and Binary frame formats). A corresponding cross-platform supervisory control application was implemented in **C++17**.
 
 ![Laboratory Setup](doc/lab_zapojeni.jpg)
-*Physical laboratory testing setup: NXP FRDM board, RS485 transceiver (MAX1487), and I²C temperature sensors (TMP275).*
+*Physical laboratory testing setup: NXP FRDM board, RS485 transceiver (MAX1487), and I²C temperature sensors (DS1621).*
 
 ---
 
@@ -39,7 +39,7 @@ The module periodically samples high-precision digital temperature sensors (**Te
                                                                            ┌─────────────────┴─────────────────┐
                                                                            ▼                                   ▼
                                                                  ┌───────────────────┐               ┌───────────────────┐
-                                                                 │   TMP275 Sensor   │   ... up to   │   TMP275 Sensor   │
+                                                                 │   DS1621 Sensor   │   ... up to   │   DS1621 Sensor   │
                                                                  │   (Address 0x48)  │    8 sensors  │   (Address 0x4F)  │
                                                                  └───────────────────┘               └───────────────────┘
 ```
@@ -47,8 +47,8 @@ The module periodically samples high-precision digital temperature sensors (**Te
 ### 1. ⚡ Embedded Firmware (`program/MCU/BP_RTOS`)
 - **Target Microcontroller**: NXP FRDM-MCX family (ARM Cortex-M33).
 - **FreeRTOS Multitasking**:
-  - **Sensor Polling Task**: High-priority task managing periodic, non-blocking readings from multiple I²C temperature sensors (TMP275, 9–12 bit selectable resolution).
-  - **Spinel / UART RX Task**: Real-time interrupt/DMA-driven reception of incoming serial stream.
+  - **Sensor Polling Task**: Periodic, non-blocking readings from multiple I²C temperature sensors (DS1621, 9-bit / 0.5 °C resolution).
+  - **Spinel / UART RX Task**: Real-time interrupt-driven reception of incoming serial stream.
   - **Dispatcher / Processing Task**: Validates incoming Spinel packets, calculates checksums (CRC/SUM), queries sensor cache, and generates response frames.
 - **Hardware Abstraction Layer (HAL)**: Encapsulated drivers for LP_FLEXCOMM I²C, UART/RS485 direction pin control (DE/RE), and non-volatile configuration storage.
 
