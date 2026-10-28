@@ -1,0 +1,54 @@
+# ==========================================
+# C / C++ & Embedded Build Outputs
+# ==========================================
+*.o
+*.obj
+*.d
+*.a
+*.lib
+*.so
+*.dylib
+*.dll
+*.exe
+
+# ==========================================
+# PC Master Application Build Artifacts
+# ==========================================
+build/
+program/PC/build/
+
+# ==========================================
+# MCUXpresso / Eclipse CDT Build Artifacts
+# ==========================================
+program/MCU/BP_RTOS/Debug/
+program/MCU/BP_RTOS/Release/
+*.axf
+*.bin
+*.hex
+*.map
+*.srec
+*.mot
+
+# Eclipse & MCUXpresso workspace metadata
+.metadata/
+*.launch.bak
+
+# ==========================================
+# IDEs & Editors
+# ==========================================
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+.idea/
+*.user
+*.suo
+
+# ==========================================
+# OS Generated Files
+# ==========================================
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+
