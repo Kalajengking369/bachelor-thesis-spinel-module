@@ -17,7 +17,7 @@
 
 ## 📌 Project Overview
 
-This project implements an industrial-grade embedded IoT measurement module based on an **NXP FRDM-MCX (32-bit ARM Cortex-M33)** microcontroller running the **FreeRTOS** real-time operating system. 
+This project implements a modular embedded temperature measurement system based on an **NXP FRDM-MCX (32-bit ARM Cortex-M33)** microcontroller running the **FreeRTOS** real-time operating system, utilizing industrial communication standards (RS485 bus and Spinel protocol).
 
 The module periodically samples high-precision digital temperature sensors (**Dallas DS1621**) over an **I²C** bus and communicates with a supervisory computer (Master PC) across an industrial **RS485** physical bus using the structured **Spinel protocol** (supporting both ASCII and Binary frame formats). A corresponding cross-platform supervisory control application was implemented in **C++17**.
 
